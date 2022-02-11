@@ -13,9 +13,7 @@ const $ = require('jquery');
 getMovies().then((movies) => {
   let htmlMovies = '';
   movies.forEach(({title, rating, id}) => {
-    htmlMovies += `<div>${title}</div>`
-
-    // let movie =`id#${id} - ${title} - rating: ${rating}`;
+    htmlMovies += `<div><input type="checkbox" value="${id}">${title} Rating: ${rating}</input></div>`
   });
   $('#movie-list').html(htmlMovies);
 }).catch((error) => {
