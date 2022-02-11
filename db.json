@@ -7,8 +7,14 @@
     },
     {
       "title": "Star Wars: A New Hope",
-      "rating": "5",
+      "rating": "2",
       "id": 2
+    },
+    {
+      "title": "Breakfast at Tiffanys",
+      "rating": "5",
+      "id": 3
     }
+
   ]
 }
