@@ -16,13 +16,12 @@ function loadMovies() {
     movies.forEach(({title, rating, id}) => {
       htmlMovies += `<div><input class="movieCheckbox" type="checkbox" name="selectedMovie" value="${id}">${title} Rating: ${rating}</input></div>`
     });
-
-
     $('#movie-list').html(htmlMovies);
   }).catch((error) => {
     alert('Oh no! Something went wrong.\nCheck the console for details.')
     console.log(error);
   });
+
 }
 loadMovies()
 $('#submit-new-movie').click(function () {
@@ -34,9 +33,11 @@ $('#submit-new-movie').click(function () {
 });
 
 $('#deleteBtn').click(function (){
-  let movieId = $('.movieCheckbox').value;
+  let movieId = $('.movieCheckbox').val();
   console.log(movieId);
 });
+
+
 
 
 
