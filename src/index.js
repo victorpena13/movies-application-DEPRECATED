@@ -10,7 +10,7 @@ sayHello('Victor Pena');
 const {getMovies, addMovie, deleteMovie} = require('./api.js');
 const $ = require('jquery');
 
-function loadMovies() {
+function centerColumn() {
   getMovies().then((movies) => {
     let htmlMovies = '';
     movies.forEach(({title, rating, id}) => {
@@ -21,21 +21,30 @@ function loadMovies() {
     alert('Oh no! Something went wrong.\nCheck the console for details.')
     console.log(error);
   });
-
 }
-loadMovies()
+centerColumn()
 $('#submit-new-movie').click(function () {
   let movieTitle = $('#new-movie').val();
   let rating = $('#rating').val();
   addMovie(movieTitle, rating).then((response) =>{
     loadMovies();
+    testMovie();
   });
 });
 
-$('#deleteBtn').click(function (){
-  let movieId = $('.movieCheckbox').val();
-  console.log(movieId);
-});
+function deleteColumn() {
+  getMovies().then((movies) => {
+    let htmlMovies = '<select>';
+    movies.forEach(({title, rating, id}) => {
+      htmlMovies += `<option value="${id}">${title}</option>`
+    });
+    htmlMovies += '</select>';
+    $('#movieListTwo').html(htmlMovies);
+
+  });
+}
+testMovie();
+
 
 
 
