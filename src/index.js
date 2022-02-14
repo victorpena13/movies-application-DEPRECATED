@@ -14,7 +14,7 @@ function centerColumn() {
   getMovies().then((movies) => {
     let htmlMovies = '';
     movies.forEach(({title, rating, id}) => {
-      htmlMovies += `<div><input class="movieCheckbox" type="checkbox" name="selectedMovie" value="${id}">${title} Rating: ${rating}</input></div>`
+      htmlMovies += `<br>${title} ---- Rating: ${rating}<br>`
     });
     $('#movie-list').html(htmlMovies);
   }).catch((error) => {
@@ -27,26 +27,32 @@ $('#submit-new-movie').click(function () {
   let movieTitle = $('#new-movie').val();
   let rating = $('#rating').val();
   addMovie(movieTitle, rating).then((response) =>{
-    loadMovies();
-    testMovie();
+    centerColumn();
+    thirdColumn();
   });
 });
 
-function deleteColumn() {
+function thirdColumn() {
   getMovies().then((movies) => {
-    let htmlMovies = '<select>';
+    let htmlMovies = '';
     movies.forEach(({title, rating, id}) => {
-      htmlMovies += `<option value="${id}">${title}</option>`
+      htmlMovies += `<div><input class="movieCheckbox" name="selectedMovie" type="checkbox" value="${id}">${title}</input></div>`
     });
-    htmlMovies += '</select>';
     $('#movieListTwo').html(htmlMovies);
-
   });
+  centerColumn();
 }
-testMovie();
+thirdColumn();
 
 
-
-
-
+$('#delete-movie-button').click(function (){
+  var checkboxValues = [];
+  $('input[name=selectedMovie]:checked').map(function() {
+    checkboxValues.push($(this).val());
+    deleteMovie(checkboxValues);
+    console.log(checkboxValues);
+    centerColumn()
+    thirdColumn();
+  });
+});
 
